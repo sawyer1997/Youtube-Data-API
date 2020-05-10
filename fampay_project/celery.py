@@ -3,6 +3,7 @@ from __future__ import absolute_import
 import os
 
 from celery import Celery
+from celery.schedules import crontab
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fampay_project.settings')
@@ -15,6 +16,13 @@ app = Celery('fampay_project')
 # pickle the object when using Windows.
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+app.conf.beat_schedule = {
+    'core-tasks-store_youtube_data_api': {
+        'task': 'core.tasks.store_youtube_data_api',
+        'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
+    },
+}
 
 
 @app.task(bind=True)
