@@ -14,4 +14,6 @@ Steps to run the project:
 2. After creating virtual environment, we need to activate the virtual environment, using `source my_env/bin/activate`.
 3. Changing the directory to fampay, we can now install the required dependecies using the command,  `pip install requirements.txt`
 4. And the server can be run by `python manage.py runserver`
-5. We can check the API response on the localhost server with port 8000, with the link `localhost:8000/link/<int>` that int would be the page number, you would want.
+5. We need to run the redis local server using `redis-server`, if it's already trying stopping it and running it again.
+6. We got to run the celery as well using command `celery -A <project_name> beat` and in other terminal `celery worker -A <project_name> --loglevel=info --concurrency=4`
+7. We can check the API response on the localhost server with port 8000, with the link `localhost:8000/link/<int>` that int would be the page number, you would want.
