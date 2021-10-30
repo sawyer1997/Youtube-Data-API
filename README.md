@@ -1,6 +1,6 @@
 # Youtube Data API
 
-There is a periodic function which is running every minute, to fetch data from YouTube Data API, and there is redis cache storing results for a short time limit, which get refreshed every minute, or in cache miss is there.
+There is a periodic function which is running every minute, to fetch data from YouTube Data API, and there is redis cache storing results for a short time limit, which get refreshed every minute, or in case cache miss is there.
 
 Celery is a task queue, used to asynchronously execute work outside the HTTP request-response cycle. And the message broker used here is again redis.
 
